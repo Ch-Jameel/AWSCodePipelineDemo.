@@ -1,0 +1,21 @@
+﻿version: 0.2
+phases:
+	install:
+		runtime-version:
+			dotnet: 6.0
+	pre_build:
+		commands:
+			- dotnet restore AWSCodePipelineDemo/AWSCodePipelineDemo.csproj
+
+
+	build:
+		commands:
+			- dotnet build AWSCodePipelineDemo/AWSCodePipelineDemo.csproj
+
+	post build:
+		commands:
+			- dotnet publish -c Release -o ./app/ AWSCodePipelineDemo/AWSCodePipelineDemo.csproj
+
+	aetifacts:
+		files:
+			- '**/*'
